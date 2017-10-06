@@ -1,0 +1,134 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" >
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.demoFlexUnitTest</groupId>
+    <artifactId>DemoFlexUnitTest</artifactId>
+    <version>0.9.5</version>
+    <packaging>swf</packaging>
+    <name>DemoFlexUnitTest</name>
+
+    <properties >
+        <flex.sdk.version >4.6.b.23201</flex.sdk.version >
+        <flexmojos.version >4.0-RC2</flexmojos.version >
+        <flexunit.version >4.1.0-8</flexunit.version >
+        <mockito-flex.version>1.4M5</mockito-flex.version>
+    </properties >
+
+    <build >
+        <sourceDirectory>DemoFlexUnitTest/src</sourceDirectory>
+        <testSourceDirectory>DemoFlexUnitTest/src</testSourceDirectory>
+        <plugins >
+            <plugin >
+                <groupId >org.sonatype.flexmojos</groupId >
+                <artifactId >flexmojos-maven-plugin</artifactId >
+                <version >${flexmojos.version}</version >
+                <extensions >true</extensions >
+                <configuration >
+                    <includeSources>
+                        <param>DemoFlexUnitTest/src</param>
+                    </includeSources>
+                    <includeTestSources>
+                        <param>DemoFlexUnitTest/src</param>
+                    </includeTestSources>
+                    <sourceFile>TestMain.as</sourceFile>
+                    <compilerWarnings>
+                        <warn-no-constructor>false</warn-no-constructor>
+                    </compilerWarnings>
+
+                    <configurationReport>true</configurationReport>
+                    <headlessServer >true</headlessServer >
+                    <verboseStacktraces >true</verboseStacktraces >
+                    <includeTestFiles >
+                        <includeTestFile >*TestSuite.as</includeTestFile >
+                    </includeTestFiles >
+                    <localesSourcePath>${basedir}/DemoFlexUnitTest/locale/{locale}</localesSourcePath>
+                    <locales>
+                        <param>${flex.compiler.locale}</param>
+                    </locales>
+                    <localesRuntime>
+                        <locale>en_US</locale>
+                    </localesRuntime>
+                    <configurationReport>true</configurationReport>
+                </configuration >
+                <dependencies >
+                    <!-- Nice POM bundle available per SDK on Sonatype thanks to Flex-Mojos -->
+                    <dependency >
+                        <groupId >com.adobe.flex</groupId >
+                        <artifactId >compiler</artifactId >
+                        <version >${flex.sdk.version}</version >
+                        <type >pom</type >
+                    </dependency >
+                </dependencies >
+            </plugin >
+        </plugins >
+    </build >
+
+    <dependencies >
+        <!-- Nice POM bundle available per SDK on Sonatype thanks to Flex-Mojos -->
+        <dependency >
+            <groupId >com.adobe.flex.framework</groupId >
+            <artifactId >flex-framework</artifactId >
+            <version >${flex.sdk.version}</version >
+            <type >pom</type >
+        </dependency >
+        <dependency>
+            <groupId>net.fproject.as3commons</groupId>
+            <artifactId>as3commons-reflect</artifactId>
+            <version>1.0</version>
+            <type>swc</type>
+        </dependency>
+        <!-- Based on testing library dependency specified, FlexMojos will know how to test your application -->
+        <dependency >
+            <groupId >com.adobe.flexunit</groupId >
+            <artifactId >flexunit</artifactId >
+            <version >${flexunit.version}</version >
+            <type >swc</type >
+            <scope >test</scope >
+        </dependency >
+        <!-- Adding Mockito-Flex -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-flex</artifactId>
+            <version>${mockito-flex.version}</version>
+            <type>swc</type>
+            <scope>test</scope>
+        </dependency>
+        <!-- Adding AsUnit, a dependancy of Mockito-Flex -->
+        <dependency>
+            <groupId>com.asunit</groupId>
+            <artifactId>asunit</artifactId>
+            <version>20071011</version>
+            <type>swc</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies >
+
+    <!-- Ideally this would go into your ~/.m2/settings.xml file -->
+    <repositories >
+        <repository >
+            <id >flex-mojos-repository</id >
+            <url >http://repository.sonatype.org/content/groups/flexgroup</url >
+            <releases >
+                <enabled >true</enabled >
+            </releases >
+            <snapshots >
+                <enabled >false</enabled >
+            </snapshots >
+        </repository >
+    </repositories >
+    <pluginRepositories >
+        <pluginRepository >
+            <id >flex-mojos-plugin-repository</id >
+            <url >http://repository.sonatype.org/content/groups/flexgroup</url >
+            <releases >
+                <enabled >true</enabled >
+            </releases >
+            <snapshots >
+                <enabled >false</enabled >
+            </snapshots >
+        </pluginRepository >
+    </pluginRepositories >
+</project >

@@ -16,7 +16,7 @@
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				testsToRun.push(flexUnitTests.TestCase01);
+				//testsToRun.push(flexUnitTests.TestCase01);
 				testsToRun.push(flexUnitTests.TestSuite);
 				return testsToRun;
 			}

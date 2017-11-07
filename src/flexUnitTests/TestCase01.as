@@ -3,6 +3,8 @@ package flexUnitTests
 	import flexunit.framework.Assert;
 	
 	import org.flexunit.asserts.assertEquals;
+	
+	import service.SumService;
 
 	public class TestCase01
 	{		
@@ -29,7 +31,17 @@ package flexUnitTests
 		[Test]
 		public function testSum():void
 		{
-			assertEquals('Robin Hood', 'Robin Hood');
+			var sumService:SumService = new SumService;
+			var a:int = Math.floor(Math.random()*10);
+			var b:int = Math.floor(Math.random()*10);
+			assertEquals(a+b,sumService.sum(a,b));
+			
+		}
+		
+		[Test]
+		public function testDec():void
+		{
+			assertEquals(1, 1);
 		}
 		
 		
